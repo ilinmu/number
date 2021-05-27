@@ -1,0 +1,32 @@
+{
+  "name": "@ilinmu/number",
+  "version": "0.1.0",
+  "description": "A package that provides many digital data processing methods .",
+  "main": "index.js",
+  "scripts": {
+    "commit": "cz",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilinmu/number.git"
+  },
+  "keywords": [
+    "number",
+    "digital"
+  ],
+  "author": "ilinmu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ilinmu/number/issues"
+  },
+  "homepage": "https://github.com/ilinmu/number#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "3.3.0"
+  }
+}
