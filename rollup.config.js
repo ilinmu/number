@@ -1,14 +1,21 @@
 import { babel } from '@rollup/plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+
+const extensions = [ '.js', '.ts' ];
 
 export default {
-  input: 'src/number.js',
+  input: 'src/number.ts',
   output: {
-    file: 'index.js',
+    file: 'lib/index.js',
     format: 'umd',
     name: 'number',
   },
   plugins: [
+    babel({
+      exclude: 'node_modules/**',
+      extensions,
+    }),
     commonjs({
       // non-CommonJS modules will be ignored, but you can also
       // specifically include/exclude files
@@ -19,7 +26,7 @@ export default {
 
       // search for files other than .js files (must already
       // be transpiled by a previous plugin!)
-      extensions: [ '.js', '.ts' ],  // Default: [ '.js' ]
+      extensions,  // Default: [ '.js' ]
 
       // if true then uses of `global` won't be dealt with by this plugin
       // ignoreGlobal: false,  // Default: false
@@ -37,7 +44,10 @@ export default {
       // option if you know what you're doing!
       ignore: [ 'conditional-runtime-dependency' ]
     }),
-    babel({ babelHelpers: 'bundled' })
+    nodeResolve({
+      extensions,
+      modulesOnly: true,
+    }),
   ],
   // external: ['lodash']
 };
